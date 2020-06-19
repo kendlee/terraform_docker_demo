@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run: terraform init
+      - run: terraform apply -input=false -auto-approve
+      - run: sleep 10s
+      - run: terraform destroy -auto-approve
 workflows:
   deploy:
     # Run the welcome/run job in its own container
