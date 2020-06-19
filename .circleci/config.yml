@@ -3,9 +3,13 @@ version: 2.1
 jobs:
   terraform-setup:
     docker:
-      - image: hashicorp/terraform:light
+      - image: mullnerz/ansible-playbook:latest
     steps:
       - checkout
+      - run: |
+          curl -o tf0.12.zip https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip
+          unzip tf0.12.zip
+          mv terraform /usr/bin/
       - run: terraform init
       - run: terraform apply -input=false -auto-approve
       - run: sleep 10s
