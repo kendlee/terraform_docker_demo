@@ -25,4 +25,12 @@
         name: simple_service
         image: kdblitz/docker_node_app:latest
         ports:
-          - "3000:3000"
+          - "{{ server_port }}:3000"
+        env:
+          EXTRA_MESSAGE: "{{ server_message }}"
+
+    - name: Wait for application to be up
+      wait_for:
+        host: localhost
+        port: "{{ server_port }}"
+        state: started
