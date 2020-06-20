@@ -37,7 +37,7 @@ resource "aws_instance" "server_instance" {
     command = <<EOF
       sed 's/PLACEHOLDER_HOST/${self.public_dns}/g' ansible/inventory.yml.template > ansible/inventory.yml
       ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --extra-vars "server_port=${var.server_port} \
-        server_message='${var.server_message}"' -i ansible/inventory.yml ansible/docker.yml
+        server_message='${var.server_message}'" -i ansible/inventory.yml ansible/docker.yml
     EOF
   }
 
