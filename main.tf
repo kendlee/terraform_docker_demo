@@ -33,6 +33,10 @@ resource "aws_instance" "server_instance" {
     inline = ["echo 'VM is ready!'"]
   }
 
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/inventory.yml ../ansible/docker.yml"
+  }
+
   connection {
     type        = "ssh"
     host        = self.public_ip
