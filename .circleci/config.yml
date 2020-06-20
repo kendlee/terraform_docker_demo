@@ -24,9 +24,8 @@ jobs:
 
 workflows:
   deploy:
-    # Run the welcome/run job in its own container
     jobs:
       - terraform-setup:
           filters:
-            ignore:
-              - /.*skip-build/
+            branches:
+              ignore: /.*skip-build/
