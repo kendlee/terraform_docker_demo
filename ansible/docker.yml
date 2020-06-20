@@ -2,6 +2,10 @@
 - hosts: dockerhosts
 
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: Install docker service
       apt:
         name: docker.io
