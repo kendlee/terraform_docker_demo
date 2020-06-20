@@ -34,7 +34,10 @@ resource "aws_instance" "server_instance" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/inventory.yml ../ansible/docker.yml"
+    command = <<EOF
+      sed 's/PLACEHOLDER_HOST/${self.public_dns}/g' ansible/inventory.yml.template > ansible/inventory.yml
+      ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/inventory.yml ../ansible/docker.yml
+    EOF
   }
 
   connection {
