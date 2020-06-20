@@ -21,3 +21,9 @@ variable "server_port" {
   type        = number
   default     = 8080
 }
+
+variable "server_message" {
+  description = "Extra custom message for deployed docker image"
+  type        = string
+  default     = "Message from terraform!"
+}

@@ -16,7 +16,8 @@ jobs:
           mv terraform /usr/bin/
       - run: terraform init
       - run: terraform apply -input=false -auto-approve
-      - run: sleep 10s
+      - run: sleep 10s # user can try to access within this period
+      - run: curl $(terraform output complete_url)
       - run: terraform destroy -auto-approve
       - store_artifacts:
           path: ./terraform.tfstate
