@@ -25,4 +25,4 @@
         name: simple_service
         image: kdblitz/docker_node_app:latest
         ports:
-          - "3000:3000"
+          - {{ port }}:3000

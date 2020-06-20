@@ -19,5 +19,5 @@ variable "instance_type" {
 variable "server_port" {
   description = "Server port for http request"
   type        = number
-  default     = 3000
+  default     = 8080
 }
