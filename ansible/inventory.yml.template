@@ -1,0 +1,8 @@
+dockerhosts:
+  hosts:
+    PLACEHOLDER_HOST:
+  vars:
+    ansible_user: ubuntu
+    ansible_become: yes
+    ansible_become_method: sudo
+    ansible_ssh_private_key_file: ./id_rsa

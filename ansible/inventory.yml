@@ -1,0 +1,8 @@
+dockerhosts:
+  hosts:
+    ec2-18-181-211-84.ap-northeast-1.compute.amazonaws.com:
+  vars:
+    ansible_user: ubuntu
+    ansible_become: yes
+    ansible_become_method: sudo
+    ansible_ssh_private_key_file: ./id_rsa

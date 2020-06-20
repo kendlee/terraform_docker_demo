@@ -7,7 +7,7 @@ variable "cluster_name" {
 variable "ami" {
   description = "AMI to run on cluster"
   type        = string
-  default     = "ami-0278fe6949f6b1a06"
+  default     = "ami-0278fe6949f6b1a06" # ubuntu image
 }
 
 variable "instance_type" {

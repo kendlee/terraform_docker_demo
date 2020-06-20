@@ -1,0 +1,28 @@
+---
+- hosts: dockerhosts
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install docker service
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install docker-py
+      pip:
+        name: docker-py
+
+    - name: Deploy simple docker application
+      docker_container:
+        name: simple_service
+        image: kdblitz/docker_node_app:latest
+        ports:
+          - "3000:3000"

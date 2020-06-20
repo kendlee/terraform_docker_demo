@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout
       - run: |
+          echo $BASE64_PEM_FILE | base64 -d > id_rsa
+          echo $BASE64_PUB_KEY | base64 -d > id_rsa.pub
+          chmod 400 id_rsa
+      - run: |
           curl -o tf0.12.zip https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip
           unzip tf0.12.zip
           mv terraform /usr/bin/
@@ -14,6 +18,10 @@ jobs:
       - run: terraform apply -input=false -auto-approve
       - run: sleep 10s
       - run: terraform destroy -auto-approve
+      - store_artifacts:
+          path: ./terraform.tfstate
+          when: always
+
 workflows:
   deploy:
     # Run the welcome/run job in its own container
